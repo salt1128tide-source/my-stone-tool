@@ -18,10 +18,7 @@
       padding: 24px;
     }
 
-    .container {
-      max-width: 640px;
-      width: 100%;
-    }
+    .container { max-width: 640px; width: 100%; }
 
     h1 {
       text-align: center;
@@ -40,7 +37,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* 進捗バー */
     .progress-bar {
       width: 100%;
       height: 2px;
@@ -55,11 +51,7 @@
       transition: width 0.5s ease;
     }
 
-    /* 質問カード */
-    .question-card {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
+    .question-card { display: none; animation: fadeIn 0.5s ease; }
     .question-card.active { display: block; }
 
     @keyframes fadeIn {
@@ -67,25 +59,10 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .question-number {
-      font-size: 0.75rem;
-      color: #666;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
+    .question-number { font-size: 0.75rem; color: #666; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .question-text { font-size: 1.2rem; font-weight: 300; line-height: 1.7; margin-bottom: 32px; color: #eee; }
 
-    .question-text {
-      font-size: 1.2rem;
-      font-weight: 300;
-      line-height: 1.7;
-      margin-bottom: 32px;
-      color: #eee;
-    }
-
-    .options {
-      display: grid;
-      gap: 12px;
-    }
+    .options { display: grid; gap: 12px; }
 
     .option-btn {
       background: transparent;
@@ -101,32 +78,31 @@
       transition: all 0.2s ease;
       letter-spacing: 0.03em;
     }
+    .option-btn:hover { border-color: #888; color: #fff; background: #111; }
+    .option-btn.selected { border-color: #fff; color: #fff; background: #1a1a1a; }
 
-    .option-btn:hover {
-      border-color: #888;
-      color: #fff;
-      background: #111;
-    }
-
-    .option-btn.selected {
-      border-color: #fff;
-      color: #fff;
-      background: #1a1a1a;
-    }
-
-    /* 結果画面 */
-    #result {
+    /* ローディング */
+    #loading {
       display: none;
       text-align: center;
-      animation: fadeIn 0.8s ease;
+      padding: 60px 0;
     }
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 1px solid #333;
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 24px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 0.85rem; color: #666; letter-spacing: 0.1em; }
 
-    .result-title {
-      font-size: 0.85rem;
-      color: #888;
-      letter-spacing: 0.15em;
-      margin-bottom: 24px;
-    }
+    /* 結果 */
+    #result { display: none; text-align: center; animation: fadeIn 0.8s ease; }
+
+    .result-title { font-size: 0.85rem; color: #888; letter-spacing: 0.15em; margin-bottom: 24px; }
 
     .stone-image {
       width: 100%;
@@ -136,21 +112,8 @@
       display: block;
     }
 
-    .stone-type {
-      font-size: 1.4rem;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-      color: #fff;
-    }
-
-    .stone-desc {
-      font-size: 0.9rem;
-      color: #999;
-      line-height: 1.8;
-      margin-bottom: 40px;
-      font-weight: 300;
-    }
+    .stone-type { font-size: 1.4rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 12px; color: #fff; }
+    .stone-desc { font-size: 0.9rem; color: #999; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
 
     .download-btn {
       display: inline-block;
@@ -165,11 +128,7 @@
       transition: all 0.2s ease;
       background: transparent;
     }
-
-    .download-btn:hover {
-      border-color: #fff;
-      color: #fff;
-    }
+    .download-btn:hover { border-color: #fff; color: #fff; }
 
     .retry-btn {
       display: block;
@@ -183,6 +142,8 @@
       transition: color 0.2s;
     }
     .retry-btn:hover { color: #999; }
+
+    .error-msg { color: #e05555; font-size: 0.85rem; margin-top: 16px; }
   </style>
 </head>
 <body>
@@ -195,7 +156,6 @@
   </div>
 
   <div id="questions">
-
     <!-- Q1 -->
     <div class="question-card active" id="q0">
       <p class="question-number">Q1 / 5</p>
@@ -255,7 +215,12 @@
         <button class="option-btn" onclick="answer(4,3)">「仲間と達成する喜び」</button>
       </div>
     </div>
+  </div>
 
+  <!-- ローディング -->
+  <div id="loading">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">あなたの石を生成しています...</p>
   </div>
 
   <!-- 結果 -->
@@ -264,107 +229,96 @@
     <img class="stone-image" id="stoneImg" src="" alt="あなたの石" />
     <p class="stone-type" id="stoneType"></p>
     <p class="stone-desc" id="stoneDesc"></p>
-    <a class="download-btn" id="downloadBtn" href="#" download>画像をダウンロード</a>
+    <a class="download-btn" id="downloadBtn" href="#" download="your-stone.png">画像をダウンロード</a>
     <button class="retry-btn" onclick="retry()">もう一度やり直す</button>
+    <p class="error-msg" id="errorMsg"></p>
   </div>
 </div>
 
 <script>
   // ==============================
-  // 石の定義（10種類）
-  // stone-type名・説明・画像ファイル名を自由に編集してください
+  // 石のタイプ定義（10種類）
   // ==============================
   const stones = [
     {
       type: "開拓者の石",
       desc: "既存の枠にとらわれず、自ら道を切り拓いていくあなた。\nその好奇心と行動力が、新しい世界を生み出す。",
-      file: "stone01.png"
+      prompt: "a unique sculptural stone object with iridescent crystal surfaces and sharp geometric edges emerging from rough pumice rock, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "共鳴者の石",
       desc: "人の気持ちに寄り添い、チームに温もりをもたらすあなた。\nその共感力が、周りの人を動かす力になる。",
-      file: "stone02.png"
+      prompt: "a unique sculptural stone object with soft rose quartz and warm amber glass merged into rough limestone, gentle glow, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "探究者の石",
       desc: "物事の本質を深く追い求めるあなた。\nその洞察力と粘り強さが、複雑な問題を解き明かす。",
-      file: "stone03.png"
+      prompt: "a unique sculptural stone object with deep blue lapis lazuli and polished obsidian fused into volcanic rock, intricate surface patterns, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "構築者の石",
       desc: "着実に積み上げることで、大きなものを生み出すあなた。\nその安定感と責任感が、チームの土台となる。",
-      file: "stone04.png"
+      prompt: "a unique sculptural stone object with solid granite base merged with structured metallic copper lattice, strong geometric form, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "触媒の石",
       desc: "周りの人やアイデアをつなぎ、化学反応を起こすあなた。\nその存在が、場のエネルギーを変える。",
-      file: "stone05.png"
+      prompt: "a unique sculptural stone object with swirling multicolored opal and electric blue resin embedded in rough sandstone, dynamic energy, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "革新者の石",
       desc: "当たり前を疑い、新しい視点をもたらすあなた。\nそのユニークな発想が、世界を面白くする。",
-      file: "stone06.png"
+      prompt: "a unique sculptural stone object with holographic chrome surface and neon pink fabric texture fused into pumice rock, surreal and unexpected, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "羅針盤の石",
       desc: "方向性を示し、チームを正しい方向へ導くあなた。\nその判断力と意志が、みんなの道標になる。",
-      file: "stone07.png"
+      prompt: "a unique sculptural stone object with polished silver mercury-like surface and compass rose pattern carved into dark basalt, precise and authoritative, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "根の石",
       desc: "見えないところで支え、全体を安定させるあなた。\nその誠実さと粘り強さが、チームの力になる。",
-      file: "stone08.png"
+      prompt: "a unique sculptural stone object with deep earthy terracotta and weathered bronze merged into ancient limestone, timeless and grounded, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "光の石",
       desc: "明るさとエネルギーで周りを照らすあなた。\nその前向きな姿勢が、チームに活力を与える。",
-      file: "stone09.png"
+      prompt: "a unique sculptural stone object with glowing golden amber and translucent yellow citrine crystal emerging from white quartz, radiant energy, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     },
     {
       type: "対話者の石",
       desc: "言葉と傾聴で、人と人の間に橋を架けるあなた。\nその誠実なコミュニケーションが、信頼を生む。",
-      file: "stone10.png"
+      prompt: "a unique sculptural stone object with soft turquoise and woven blue textile texture fused into smooth river stone, harmonious and balanced, floating on black background, studio lighting, photorealistic, 3D render, high detail"
     }
   ];
 
   // ==============================
-  // 回答→石のマッピング（スコア方式）
-  // 各質問の回答(0〜3)が、どの石タイプに近いかを定義
+  // 回答→石のマッピング
   // ==============================
-  // 各回答で加算されるstone indexのリスト
   const mapping = [
-    // Q1: ワクワクする瞬間
-    [[0,5], [1,4], [2,7], [3,4]], // 0:アイデア→革新/開拓, 1:役立つ→共鳴/触媒, 2:問題解決→探究/根, 3:仲間→触媒/共鳴
-    // Q2: 友達からどう言われる
-    [[3,7], [0,5], [1,9], [4,8]], // 0:頼りになる→構築/根, 1:発想→開拓/革新, 2:聞き上手→共鳴/対話, 3:エネルギッシュ→触媒/光
-    // Q3: 仕事で大事なこと
-    [[1,4], [2,0], [5,0], [4,1]], // 0:貢献→共鳴/触媒, 1:成長→探究/開拓, 2:創造→革新/開拓, 3:チーム→触媒/共鳴
-    // Q4: 知らないことへの対処
-    [[2,0], [9,1], [0,5], [6,3]], // 0:自分で調べる→探究/開拓, 1:すぐ聞く→対話/共鳴, 2:まずやる→開拓/革新, 3:考える→羅針盤/構築
-    // Q5: 原動力
-    [[6,8], [0,5], [2,5], [1,4]]  // 0:認められたい→羅針盤/光, 1:世界を変えたい→開拓/革新, 2:楽しいかどうか→探究/革新, 3:仲間と達成→共鳴/触媒
+    [[0,5], [1,4], [2,7], [3,4]],
+    [[3,7], [0,5], [1,9], [4,8]],
+    [[1,4], [2,0], [5,0], [4,1]],
+    [[2,0], [9,1], [0,5], [6,3]],
+    [[6,8], [0,5], [2,5], [1,4]]
   ];
 
   let answers = [];
-  let current = 0;
 
   function answer(qIndex, optIndex) {
-    // ボタンのハイライト
     const btns = document.querySelectorAll(`#q${qIndex} .option-btn`);
     btns.forEach(b => b.classList.remove('selected'));
     btns[optIndex].classList.add('selected');
-
     answers[qIndex] = optIndex;
 
     setTimeout(() => {
       if (qIndex < 4) {
         document.getElementById(`q${qIndex}`).classList.remove('active');
         document.getElementById(`q${qIndex + 1}`).classList.add('active');
-        current = qIndex + 1;
         updateProgress(qIndex + 1);
       } else {
         updateProgress(5);
-        showResult();
+        generateStone();
       }
     }, 400);
   }
@@ -373,37 +327,46 @@
     document.getElementById('progressFill').style.width = (step / 5 * 100) + '%';
   }
 
-  function showResult() {
+  async function generateStone() {
     // スコア集計
     const score = new Array(10).fill(0);
     answers.forEach((ans, q) => {
       mapping[q][ans].forEach(idx => score[idx]++);
     });
-
-    // 最高スコアの石を選ぶ（同点の場合は最初のもの）
-    let maxScore = -1;
-    let stoneIndex = 0;
-    score.forEach((s, i) => {
-      if (s > maxScore) { maxScore = s; stoneIndex = i; }
-    });
+    let maxScore = -1, stoneIndex = 0;
+    score.forEach((s, i) => { if (s > maxScore) { maxScore = s; stoneIndex = i; } });
 
     const stone = stones[stoneIndex];
 
-    // 結果表示
+    // ローディング表示
     document.getElementById('questions').style.display = 'none';
-    const result = document.getElementById('result');
-    result.style.display = 'block';
+    document.getElementById('loading').style.display = 'block';
 
-    document.getElementById('stoneImg').src = stone.file;
-    document.getElementById('stoneType').textContent = stone.type;
-    document.getElementById('stoneDesc').textContent = stone.desc;
-    document.getElementById('downloadBtn').href = stone.file;
-    document.getElementById('downloadBtn').download = stone.file;
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: stone.prompt })
+      });
+      const data = await res.json();
+      const imageUrl = data.data[0].url;
+
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('stoneImg').src = imageUrl;
+      document.getElementById('stoneType').textContent = stone.type;
+      document.getElementById('stoneDesc').textContent = stone.desc;
+      document.getElementById('downloadBtn').href = imageUrl;
+
+    } catch (e) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('questions').style.display = 'block';
+      document.getElementById('errorMsg').textContent = '画像の生成に失敗しました。もう一度お試しください。';
+    }
   }
 
   function retry() {
     answers = [];
-    current = 0;
     document.getElementById('result').style.display = 'none';
     document.getElementById('questions').style.display = 'block';
     document.querySelectorAll('.question-card').forEach((el, i) => {
