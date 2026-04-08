@@ -37,17 +37,8 @@
       letter-spacing: 0.08em;
     }
 
-    .progress-bar {
-      width: 100%;
-      height: 1px;
-      background: #1e1e1e;
-      margin-bottom: 52px;
-    }
-    .progress-fill {
-      height: 100%;
-      background: #fff;
-      transition: width 0.6s ease;
-    }
+    .progress-bar { width: 100%; height: 1px; background: #1e1e1e; margin-bottom: 52px; }
+    .progress-fill { height: 100%; background: #fff; transition: width 0.6s ease; }
 
     .question-card { display: none; animation: fadeIn 0.5s ease; }
     .question-card.active { display: block; }
@@ -57,21 +48,8 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .question-number {
-      font-size: 0.7rem;
-      color: #444;
-      letter-spacing: 0.2em;
-      margin-bottom: 16px;
-    }
-
-    .question-text {
-      font-size: 1.15rem;
-      font-weight: 300;
-      line-height: 1.8;
-      margin-bottom: 36px;
-      color: #ddd;
-      letter-spacing: 0.02em;
-    }
+    .question-number { font-size: 0.7rem; color: #444; letter-spacing: 0.2em; margin-bottom: 16px; }
+    .question-text { font-size: 1.15rem; font-weight: 300; line-height: 1.8; margin-bottom: 36px; color: #ddd; letter-spacing: 0.02em; }
 
     .options { display: grid; gap: 10px; }
 
@@ -93,97 +71,90 @@
     .option-btn:hover { border-color: #555; color: #eee; }
     .option-btn.selected { border-color: #888; color: #fff; }
 
-    /* ローディング */
-    #loading {
-      display: none;
-      text-align: center;
-      padding: 80px 0;
-    }
+    #loading { display: none; text-align: center; padding: 80px 0; }
     .loading-ring {
-      width: 40px;
-      height: 40px;
-      border: 1px solid #222;
-      border-top-color: #666;
+      width: 40px; height: 40px;
+      border: 1px solid #222; border-top-color: #666;
       border-radius: 50%;
       animation: spin 1.2s linear infinite;
       margin: 0 auto 28px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .loading-text {
-      font-size: 0.75rem;
-      color: #444;
-      letter-spacing: 0.15em;
-    }
+    .loading-text { font-size: 0.75rem; color: #444; letter-spacing: 0.15em; }
 
-    /* 結果 */
     #result { display: none; text-align: center; animation: fadeIn 0.8s ease; }
 
-    .result-label {
-      font-size: 0.7rem;
-      color: #444;
-      letter-spacing: 0.25em;
-      margin-bottom: 28px;
-    }
+    .result-label { font-size: 0.7rem; color: #444; letter-spacing: 0.25em; margin-bottom: 28px; }
 
     .stone-image {
-      width: 100%;
-      max-width: 480px;
-      border-radius: 2px;
-      margin: 0 auto 36px;
-      display: block;
+      width: 100%; max-width: 480px;
+      border-radius: 2px; margin: 0 auto 36px; display: block;
     }
 
-    .stone-type {
-      font-size: 1.3rem;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      margin-bottom: 16px;
-      color: #fff;
-    }
+    .stone-type { font-size: 1.3rem; font-weight: 300; letter-spacing: 0.15em; margin-bottom: 16px; color: #fff; }
 
-    .stone-desc {
-      font-size: 0.85rem;
-      color: #666;
-      line-height: 2;
+    .stone-desc { font-size: 0.85rem; color: #666; line-height: 2; margin-bottom: 36px; font-weight: 300; white-space: pre-line; }
+
+    /* 解説セクション */
+    .breakdown {
+      border-top: 1px solid #1a1a1a;
+      padding-top: 32px;
       margin-bottom: 48px;
+      text-align: left;
+    }
+
+    .breakdown-title {
+      font-size: 0.7rem;
+      color: #444;
+      letter-spacing: 0.2em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .breakdown-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #111;
+    }
+    .breakdown-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .breakdown-material {
+      font-size: 0.75rem;
+      color: #888;
+      letter-spacing: 0.05em;
+      min-width: 120px;
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .breakdown-reason {
+      font-size: 0.8rem;
+      color: #555;
+      line-height: 1.7;
       font-weight: 300;
-      white-space: pre-line;
     }
 
     .download-btn {
       display: inline-block;
-      border: 1px solid #333;
-      color: #888;
-      padding: 13px 40px;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      cursor: pointer;
-      border-radius: 2px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      background: transparent;
+      border: 1px solid #333; color: #888;
+      padding: 13px 40px; font-size: 0.75rem;
+      letter-spacing: 0.15em; cursor: pointer;
+      border-radius: 2px; text-decoration: none;
+      transition: all 0.2s ease; background: transparent;
     }
     .download-btn:hover { border-color: #888; color: #fff; }
 
     .retry-btn {
-      display: block;
-      margin: 20px auto 0;
-      background: none;
-      border: none;
-      color: #333;
-      font-size: 0.75rem;
-      cursor: pointer;
-      letter-spacing: 0.1em;
-      transition: color 0.2s;
+      display: block; margin: 20px auto 0;
+      background: none; border: none; color: #333;
+      font-size: 0.75rem; cursor: pointer;
+      letter-spacing: 0.1em; transition: color 0.2s;
     }
     .retry-btn:hover { color: #666; }
-
-    .error-msg {
-      color: #663333;
-      font-size: 0.8rem;
-      margin-top: 20px;
-      letter-spacing: 0.05em;
-    }
+    .error-msg { color: #663333; font-size: 0.8rem; margin-top: 20px; letter-spacing: 0.05em; }
   </style>
 </head>
 <body>
@@ -262,6 +233,12 @@
     <img class="stone-image" id="stoneImg" src="" alt="あなたの石" />
     <p class="stone-type" id="stoneType"></p>
     <p class="stone-desc" id="stoneDesc"></p>
+
+    <div class="breakdown">
+      <p class="breakdown-title">— この石があなたを表す理由 —</p>
+      <div id="breakdownList"></div>
+    </div>
+
     <a class="download-btn" id="downloadBtn" href="#" download="your-stone.png">DOWNLOAD</a>
     <button class="retry-btn" onclick="retry()">もう一度やり直す</button>
     <p class="error-msg" id="errorMsg"></p>
@@ -270,6 +247,69 @@
 
 <script>
   const BASE = "a photorealistic 3D rendered sculptural rock object floating on a pure black background, studio lighting with subtle shadows, the rock is composed of multiple contrasting natural and synthetic materials fused together, hyper-detailed textures, Midjourney aesthetic, square format";
+
+  // 質問と回答のラベル
+  const questions = [
+    {
+      q: "ワクワクする瞬間",
+      opts: ["新しいアイデアを思いついた時", "誰かの役に立てた時", "難しい問題を解けた時", "仲間と一緒に何かを作り上げた時"]
+    },
+    {
+      q: "友達からの評価",
+      opts: ["頼りになる・安定感がある", "発想が面白い・ユニーク", "話しやすい・聞き上手", "エネルギッシュ・引っ張ってくれる"]
+    },
+    {
+      q: "仕事で大事なこと",
+      opts: ["社会や人への貢献", "自分の成長・スキルアップ", "新しいものを生み出すこと", "チームワーク・人とのつながり"]
+    },
+    {
+      q: "知らないことへの対処",
+      opts: ["とにかく自分で調べる", "詳しい人にすぐ聞く", "まずやってみる", "じっくり考えてから動く"]
+    },
+    {
+      q: "原動力",
+      opts: ["誰かに認められたい", "世の中を変えたい", "自分が楽しいかどうか", "仲間と達成する喜び"]
+    }
+  ];
+
+  // 回答ごとの「素材」と「理由」
+  const answerMaterials = [
+    // Q1
+    [
+      { material: "ホログラム", reason: "アイデアが生まれる瞬間のワクワクは、見る角度によって輝きが変わるホログラムのように、多面的な可能性を秘めています。" },
+      { material: "ベルベット", reason: "誰かの役に立てた喜びは、触れると温かみが伝わるベルベットの質感。人との関わりを大切にする柔らかさが表れています。" },
+      { material: "黒曜石", reason: "難問を解く集中力と突破力は、火山の圧力で生まれた黒曜石のように、鋭く研ぎ澄まされたエネルギーを持っています。" },
+      { material: "ファー", reason: "仲間と作り上げる喜びは、ふわふわとしたファーのように、周りを包み込む温かさと一体感を象徴しています。" }
+    ],
+    // Q2
+    [
+      { material: "タイル模様の岩", reason: "頼りになる安定感は、整然と並んだタイルのように、ひとつひとつ丁寧に積み上げられた信頼の証です。" },
+      { material: "蛍光カラー", reason: "ユニークな発想は、周りに埋もれない蛍光色のように、あなたの視点が場をパッと照らす個性を表しています。" },
+      { material: "フロストガラス", reason: "聞き上手な性格は、光を柔らかく通すすりガラスのように、相手の言葉を受け止めて静かに輝く内省的な力です。" },
+      { material: "溶岩石", reason: "周りを引っ張るエネルギーは、地の底から噴き出す溶岩のように、内側から湧き出す熱量と推進力を持っています。" }
+    ],
+    // Q3
+    [
+      { material: "ベルベット", reason: "社会や人への貢献を重視するあなたの温かさは、触れた人に安心感を与えるベルベットの質感で表現されています。" },
+      { material: "クロムメタル", reason: "自分の成長への意志は、磨き上げられたクロムのように、鋭く反射する知性と自己研鑽の姿勢を表しています。" },
+      { material: "ネオンカラー", reason: "何かを生み出したいというエネルギーは、既存の色の枠を超えた蛍光色のように、創造への純粋な衝動を表しています。" },
+      { material: "ファー", reason: "人とのつながりを大切にする姿勢は、ふわふわとしたファーのように、周りを柔らかく包み込む力を持っています。" }
+    ],
+    // Q4
+    [
+      { material: "苔（こけ）", reason: "自分で調べる探究心は、岩の表面にじわじわと広がる苔のように、着実に深く根を張っていく知識欲の表れです。" },
+      { material: "フロストガラス", reason: "人に聞ける素直さは、光を遮らず柔らかく通すすりガラスのように、自分の非を認めて他者から学べる開かれた姿勢です。" },
+      { material: "溶岩石", reason: "まずやってみる行動力は、考える前に流れ出す溶岩のように、内側からあふれ出す衝動と突破力を持っています。" },
+      { material: "クロムメタル", reason: "じっくり考えてから動く慎重さは、精密に設計されたメタルのように、ブレない判断軸と論理的な意志の強さを示しています。" }
+    ],
+    // Q5
+    [
+      { material: "金箔", reason: "認められたいという気持ちは、目に見える輝きを放つ金箔のように、自分の価値を形にしたいという美意識と向上心の表れです。" },
+      { material: "黒曜石", reason: "世の中を変えたいという想いは、火山の爆発から生まれた黒曜石のように、静かだが内側に圧倒的なエネルギーを秘めています。" },
+      { material: "ホログラム", reason: "自分が楽しいかどうかを大切にする感覚は、ホログラムのように、見る角度によって変わる豊かな感受性と直感を表しています。" },
+      { material: "ファー", reason: "仲間との達成を喜べる姿勢は、触れると思わず笑顔になるファーのように、人の温もりを原動力にできるあなたの強さです。" }
+    ]
+  ];
 
   const stones = [
     {
@@ -280,7 +320,7 @@
     {
       type: "共感の石",
       desc: "人の痛みも喜びも、自分のことのように感じられる。\nその温もりが、誰かにとっての救いになる。",
-      prompt: `${BASE}, base rock is white limestone with porous texture, fused with soft pink velvet cushion form and pale blue frosted resin slab, gentle warm studio lighting, delicate and soft feeling`
+      prompt: `${BASE}, base rock is white limestone with porous texture, fused with soft pink velvet cushion form and pale blue frosted resin slab, gentle warm studio lighting`
     },
     {
       type: "探索の石",
@@ -290,37 +330,37 @@
     {
       type: "信頼の石",
       desc: "言ったことは必ずやり遂げる。\nその誠実さが、周りの人の安心感になる。",
-      prompt: `${BASE}, base rock is solid grey granite block with geometric cracked tile pattern on surface, fused with brushed steel metal plate and small cobalt blue fluffy fur cluster, structured and stable composition`
+      prompt: `${BASE}, base rock is solid grey granite block with geometric cracked tile pattern on surface, fused with brushed steel metal plate and small cobalt blue fluffy fur cluster`
     },
     {
       type: "触媒の石",
       desc: "あなたがいるだけで、場の空気が変わる。\nその存在が、化学反応を起こすスイッチになる。",
-      prompt: `${BASE}, base rock is beige sandstone, fused with swirling rainbow holographic opal surface and electric blue fuzzy textile, translucent frosted white resin blade shape, dynamic energy composition`
+      prompt: `${BASE}, base rock is beige sandstone, fused with swirling rainbow holographic opal surface and electric blue fuzzy textile, translucent frosted white resin blade shape`
     },
     {
       type: "革新の石",
       desc: "当たり前を、疑うことから始める。\nその発想が、既存の世界に亀裂を入れる。",
-      prompt: `${BASE}, base rock is black asphalt and dark volcanic stone, fused with fluorescent yellow-green lichen moss growth and neon pink plastic wedge, grey concrete slab patch, raw and disruptive aesthetic`
+      prompt: `${BASE}, base rock is black asphalt and dark volcanic stone, fused with fluorescent yellow-green lichen moss growth and neon pink plastic wedge, grey concrete slab patch`
     },
     {
       type: "意志の石",
       desc: "流されない。折れない。曲げない。\nその芯の強さが、チームの背骨になる。",
-      prompt: `${BASE}, base rock is grey limestone with angular cuts, fused with polished black hematite egg-shaped smooth form and deep purple amethyst crystal cluster, matte purple painted surface, strong and decisive composition`
+      prompt: `${BASE}, base rock is grey limestone with angular cuts, fused with polished black hematite egg-shaped smooth form and deep purple amethyst crystal cluster, matte purple painted surface`
     },
     {
       type: "根の石",
       desc: "目立たなくていい。支えることが、自分の喜びだから。\nその縁の下の力が、チームを動かし続ける。",
-      prompt: `${BASE}, base rock is textured grey granite, fused with yellow-green moss covering lower half and hot pink velvet rose bud form, white ceramic tile grid inset, grounded and nurturing composition`
+      prompt: `${BASE}, base rock is textured grey granite, fused with yellow-green moss covering lower half and hot pink velvet rose bud form, white ceramic tile grid inset`
     },
     {
       type: "直観の石",
       desc: "言葉にならない何かを、いつも感じ取っている。\nそのセンスが、場に美しさをもたらす。",
-      prompt: `${BASE}, base rock is sandy beige limestone with layered strata, fused with crinkled gold leaf texture covering one face and rainbow holographic reflective panel, dark graphite matte wedge, luxurious and intuitive aesthetic`
+      prompt: `${BASE}, base rock is sandy beige limestone with layered strata, fused with crinkled gold leaf texture covering one face and rainbow holographic reflective panel, dark graphite matte wedge`
     },
     {
       type: "対話の石",
       desc: "話すより、聴くことが得意だ。\nその受容の深さが、人の本音を引き出す。",
-      prompt: `${BASE}, base rock is white and grey granite block, fused with soft blue-to-lavender gradient fluffy fur mound and fluorescent yellow-green lichen growth, white cracked tile surface inset, gentle and open composition`
+      prompt: `${BASE}, base rock is white and grey granite block, fused with soft blue-to-lavender gradient fluffy fur mound and fluorescent yellow-green lichen growth, white cracked tile surface inset`
     }
   ];
 
@@ -377,6 +417,20 @@
       });
       const data = await res.json();
       const imageUrl = data.data[0].url;
+
+      // 解説を生成
+      const breakdownList = document.getElementById('breakdownList');
+      breakdownList.innerHTML = '';
+      answers.forEach((ans, q) => {
+        const m = answerMaterials[q][ans];
+        const item = document.createElement('div');
+        item.className = 'breakdown-item';
+        item.innerHTML = `
+          <div class="breakdown-material">${m.material}</div>
+          <div class="breakdown-reason">${m.reason}</div>
+        `;
+        breakdownList.appendChild(item);
+      });
 
       document.getElementById('loading').style.display = 'none';
       document.getElementById('result').style.display = 'block';
